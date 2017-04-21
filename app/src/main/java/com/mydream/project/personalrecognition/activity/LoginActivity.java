@@ -72,15 +72,18 @@ public class LoginActivity extends BaseActivity{
                     usernameTextInput.setError(getString(R.string.login_username_empty));
                     break;
                 }else if(usernameTextInput.isErrorEnabled()){
-//
+                    usernameTextInput.setError("");
                 }
                 String password = passwordEditText.getText().toString().trim();
                 if(!(null != password && !password.equals(""))){
                     passwordTextInput.setError(getString(R.string.login_password_empty));
                     break;
+                }else if(passwordTextInput.isErrorEnabled()){
+                    passwordTextInput.setError("");
                 }
-                Intent loginIntent = new Intent(mContext, MainActivity.class);
+                Intent loginIntent = new Intent(mContext, HomeActivity.class);
                 startActivity(loginIntent);
+                finish();
                 break;
 
         }
