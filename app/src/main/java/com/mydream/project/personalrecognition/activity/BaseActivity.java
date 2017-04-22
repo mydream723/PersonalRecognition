@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 
 /**
@@ -32,5 +33,14 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+    }
+
+    /**
+     * 显示Toast提示信息
+     * @param context 上下文
+     * @param message 显示信息
+     */
+    public static void showToast(Context context, String message){
+        Toast.makeText(context,message,Toast.LENGTH_LONG).show();
     }
 }
