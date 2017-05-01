@@ -31,5 +31,6 @@ dependencies {
     compile files('libs/AraBMApiFp.jar')
     compile files('libs/HS100P20170418.jar')
     compile files('libs/jxl.jar')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 

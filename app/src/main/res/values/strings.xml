@@ -3,6 +3,8 @@
     <!--menu-->
     <string name="nav_menu_idcard">身份证识别</string>
     <string name="nav_menu_settings">设置</string>
+    <!--dialog-->
+    <string name="dialog_message">请稍后</string>
     <!--导航栏-->
     <string name="drawer_navigation_open">打开导航栏</string>
     <string name="drawer_navigation_close">关闭导航栏</string>

@@ -1,30 +1,46 @@
 package com.mydream.project.personalrecognition.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.hs.cvr_100p550im.sdk.GetImg;
 import com.hs.cvr_100p550im.sdk.IDCardInfo;
 import com.mydream.project.personalrecognition.R;
 import com.mydream.project.personalrecognition.activity.BaseActivity;
+import com.mydream.project.personalrecognition.adapter.IDCardImgAdapter;
 import com.mydream.project.personalrecognition.utils.RecognitionUtils;
 
 import java.io.IOException;
 import java.security.spec.ECField;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 身份证识别Fragment
  */
 public class RecognitionIDFragment extends BaseFragment implements RecognitionUtils.RecognitionInitialCallback, RecognitionUtils.RecognitionIDCallback{
     private static final String TAG = "RecognitionIDFragment";
+    /**
+     * 识别按键
+     */
     private FloatingActionButton recognitionButton;
+    /**
+     * 识别照片轮播
+     */
+    private ViewPager mViewpViewPager;
+    private IDCardImgAdapter idCardImgAdapter;
+    private List<View> viewList;
+    private Bitmap[] bitmaps;
 
     private OnFragmentInteractionListener mListener;
     /**
@@ -53,6 +69,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
         View view = inflater.inflate(R.layout.fragment_recognition_id, container, false);
         initView(view);
         initEvent();
+
         return view;
     }
 
@@ -65,7 +82,9 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     }
 
     private void initView(View view){
+        mViewpViewPager = (ViewPager)view.findViewById(R.id.vp_idRecognitionFragment_cardImg);
         recognitionButton = (FloatingActionButton)view.findViewById(R.id.btn_idRecognitionFragment_idRecognition);
+
     }
 
     @Override
@@ -78,6 +97,12 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     protected void initEvent() {
         super.initEvent();
         recognitionButton.setOnClickListener(this);
+    }
+
+    private void initIdCardInformation(){
+        viewList = new ArrayList<View>();
+        idCardImgAdapter = new IDCardImgAdapter(mContext,viewList, bitmaps);
+
     }
 
 
@@ -141,13 +166,16 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
 
     @Override
     public void analysisImageComplete(IDCardInfo info) {
-        Log.d(TAG, "analysisImageComplete" );
         if(null != info){
             try {
-                GetImg.ShowBmp(info, mContext, 1);
+                bitmaps = GetImg.GetBmp(info, mContext, 0);
             }catch (IOException e){
-
+                Log.d(TAG,"IOException");
+                bitmaps = null;
             }
+        }else{
+            Log.d(TAG, "info is null");
+            bitmaps = null;
         }
 
 

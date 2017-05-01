@@ -163,6 +163,7 @@ public class RecognitionUtils {
                     isRecognitingID = false;
                     break;
                 case FLAG_RECOGNITION_ANALYSISIAMGE:
+
                     if(null != mRecognitionIDListener)
                         mRecognitionIDListener.analysisImageComplete( (null != msg.obj ? (IDCardInfo)msg.obj : null));
                     isRecognitingID = false;
@@ -263,10 +264,13 @@ public class RecognitionUtils {
                         long endTime = System.currentTimeMillis() - startTime;
                         i = 0;
                         mHandler.sendMessage(mHandler.obtainMessage(FLAG_RECOGNITION_COMPLETE, ic));
+
                         int ret = coreSDK.Unpack(ic.getwltdata());
                         if (ret == 0) {
+                            Log.d(TAG, "info is not null");
                             mHandler.sendMessage(mHandler.obtainMessage(FLAG_RECOGNITION_ANALYSISIAMGE, ic));
                         } else {
+                            Log.d(TAG, "info is  null");
                             mHandler.sendMessage(mHandler.obtainMessage(FLAG_RECOGNITION_ANALYSISIAMGE, null));
                         }
                     }

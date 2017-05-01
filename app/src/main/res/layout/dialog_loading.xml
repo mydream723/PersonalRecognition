@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="@string/dialog_message"
+        android:id="@+id/tv_loadingDialog_message"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/padding_small"
+        android:textSize="@dimen/font_default"
+        android:layout_height="wrap_content" />
+    <ProgressBar
+        android:id="@+id/pb_loadingDialog_icon"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_loadingDialog_message"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:visibility="visible" />
+
+</RelativeLayout>
