@@ -39,7 +39,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+                <Button
+                    android:layout_width="@dimen/size_btn_overturn"
+                    android:layout_height="@dimen/size_btn_overturn"
+                    android:id="@+id/btn_idRecognitionFragment_overturn"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/btn_selector_idcard_overturn"/>
             </RelativeLayout>
             </android.support.v7.widget.CardView>
     </RelativeLayout>

@@ -15,4 +15,6 @@
 
     <!--卡片布局圆角-->
     <dimen name="radius_cardview">12dp</dimen>
+    <!--切换身份证正反面按键大小-->
+    <dimen name="size_btn_overturn">24dp</dimen>
 </resources>
