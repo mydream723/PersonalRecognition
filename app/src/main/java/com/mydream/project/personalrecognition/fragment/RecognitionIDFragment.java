@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +70,8 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
         View view = inflater.inflate(R.layout.fragment_recognition_id, container, false);
         initView(view);
         initEvent();
-
+        initIdCardInformation();
+        mViewpViewPager.setAdapter(idCardImgAdapter);
         return view;
     }
 
@@ -101,6 +103,11 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
 
     private void initIdCardInformation(){
         viewList = new ArrayList<View>();
+        for(int i = 0; i < 2; i++){
+           View view =  LayoutInflater.from(mContext).inflate(R.layout.view_idcard, null);
+            viewList.add(view);
+        }
+        Log.d(TAG, "page size is " + viewList.size());
         idCardImgAdapter = new IDCardImgAdapter(mContext,viewList, bitmaps);
 
     }
@@ -168,7 +175,15 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     public void analysisImageComplete(IDCardInfo info) {
         if(null != info){
             try {
+                Log.d(TAG, "analysisImageComplete");
                 bitmaps = GetImg.GetBmp(info, mContext, 0);
+                idCardImgAdapter.setIDCardBitmaps(bitmaps);
+                viewList.clear();
+               for(int i = 0; i < 2; i++){
+                    View view =  LayoutInflater.from(mContext).inflate(R.layout.view_idcard, null);
+                    viewList.add(view);
+                }
+                idCardImgAdapter.notifyDataSetChanged();
             }catch (IOException e){
                 Log.d(TAG,"IOException");
                 bitmaps = null;

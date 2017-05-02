@@ -12,4 +12,7 @@
     <dimen name="font_default">15sp</dimen>
     <dimen name="font_big">17sp</dimen>
     <dimen name="font_small">13sp</dimen>
+
+    <!--卡片布局圆角-->
+    <dimen name="radius_cardview">12dp</dimen>
 </resources>
