@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">PersonalRecognition</string>
+    <string name="app_name">证件识别</string>
     <!--menu-->
     <string name="nav_menu_idcard">身份证识别</string>
+    <string name="nav_menu_history">识别历史</string>
     <string name="nav_menu_settings">设置</string>
     <!--dialog-->
     <string name="dialog_message">请稍后</string>
@@ -17,7 +18,21 @@
     <string name="login_login">登录</string>
     <!--首页-->
     <string name="main_title">首页</string>
-
+    <!--身份证识别页面-->
+    <!--姓名-->
+    <string name="idcard_name">姓名：</string>
+    <!--身份证号-->
+    <string name="idcard_id">身份证号：</string>
+    <!--描述-->
+    <string name="idcard_desc">描述：</string>
+    <!--识别无问题-->
+    <string name="recognition_normals">正常人员，无犯罪记录。</string>
+    <!--识别警告-->
+    <string name="recognition_alert">警告，该人员被标记为危险人员。</string>
+    <!--识别初始化-->
+    <string name="recognition_wait">等待识别</string>
+    <!--识别错误-->
+    <string name="recognition_error">识别错误，请重新识别。</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -22,4 +22,10 @@
         <item name="android:textSize">@dimen/font_default</item>
         <item name="android:textColor">@color/font_default</item>
     </style>
+
+    <!--字体大样式-->
+    <style name="font_big">
+        <item name="android:textSize">@dimen/font_big</item>
+        <item name="android:textColor">@color/font_default</item>
+    </style>
 </resources>

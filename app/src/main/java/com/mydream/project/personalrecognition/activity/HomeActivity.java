@@ -76,6 +76,7 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
         mLeftNavigationView.setNavigationItemSelectedListener(this);
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -87,6 +88,11 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
                         idFragment = RecognitionIDFragment.newInstance();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fl_homeActivity_content,idFragment, idFragment.getClass().getName() );
                 }
+                break;
+            case R.id.nav_history:
+                //识别历史
+                mDrawerLayout.closeDrawers();
+                showToast(mContext,"模块开发中");
                 break;
         }
         return false;

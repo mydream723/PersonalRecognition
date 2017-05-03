@@ -1,8 +1,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_idRecognitionFragment_idRecognition"
@@ -14,39 +13,157 @@
         app:layout_anchorGravity="bottom|right"
         app:srcCompat="@drawable/ic_btn_recognition_id" />
 
-    <RelativeLayout
-        android:id="@+id/rl_idRecognitionFragment_main"
+    <ScrollView
         android:layout_width="match_parent"
-        android:padding="@dimen/padding_default"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_idRecognitionFragment_cardImg"
+        <RelativeLayout
+            android:id="@+id/rl_idRecognitionFragment_main"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:layout_alignParentTop="true"
-            android:visibility="gone"
-            />
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:id="@+id/cv_idRecognitionFragment_cardImg"
-            app:cardBackgroundColor="@color/cardview_light_background"
-            app:cardCornerRadius="@dimen/radius_cardview"
-            app:cardElevation="@dimen/padding_small"
-            app:contentPadding="@dimen/padding_small"
-            >
-            <RelativeLayout
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_default">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_idRecognitionFragment_topPart"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <Button
-                    android:layout_width="@dimen/size_btn_overturn"
-                    android:layout_height="@dimen/size_btn_overturn"
-                    android:id="@+id/btn_idRecognitionFragment_overturn"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/btn_selector_idcard_overturn"/>
-            </RelativeLayout>
+                android:layout_height="240dp"
+                app:cardCornerRadius="@dimen/radius_cardview"
+                app:contentPadding="@dimen/padding_small">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_idRecognitionFragment_backImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/img_idcard_back" />
+
+
+                    <ImageView
+                        android:id="@+id/iv_idRecognitionFragment_frontImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/img_idcard_front" />
+
+                    <Button
+                        android:id="@+id/btn_idRecognitionFragment_overturn"
+                        android:layout_width="@dimen/size_btn_overturn"
+                        android:layout_height="@dimen/size_btn_overturn"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/btn_selector_idcard_overturn" />
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
-    </RelativeLayout>
-</android.support.design.widget.CoordinatorLayout >
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_idRecognitionFragment_bottomPart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/cv_idRecognitionFragment_topPart"
+                android:layout_marginTop="@dimen/padding_small"
+                app:cardCornerRadius="@dimen/radius_cardview"
+                app:contentPadding="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_idRecognitionFragment_status"
+                        android:layout_width="@dimen/size_icon_alert"
+                        android:layout_height="@dimen/size_icon_alert"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/padding_small"
+                        android:src="@drawable/ic_recognition_wait" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/ll_idRecognitionFragment_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            android:orientation="vertical"
+                            android:padding="@dimen/padding_small">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/idcard_name" />
+
+                                <TextView
+                                    android:id="@+id/tv_idRecognitionFragment_name"
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/padding_small"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/idcard_id" />
+
+                                <TextView
+                                    android:id="@+id/tv_idRecognitionFragment_id"
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/padding_small"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_idRecognitionFragment_descTitle"
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/idcard_desc" />
+
+                                <TextView
+                                    android:id="@+id/tv_idRecognitionFragment_desc"
+                                    style="@style/font_default"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tv_idRecognitionFragment_descTitle"
+                                    android:layout_toEndOf="@id/tv_idRecognitionFragment_descTitle" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <!--提示内容-->
+                        <TextView
+                            android:id="@+id/tv_idRecognitionFragment_message"
+                            android:layout_width="match_parent"
+                            style="@style/font_big"
+                            android:gravity="center_horizontal"
+                            android:layout_margin="@dimen/padding_big"
+                            android:text="@string/recognition_wait"
+                            android:layout_height="match_parent" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -17,4 +17,8 @@
     <dimen name="radius_cardview">12dp</dimen>
     <!--切换身份证正反面按键大小-->
     <dimen name="size_btn_overturn">24dp</dimen>
+    <!--提示图标大小-->
+    <dimen name="size_icon_alert">64dp</dimen>
+    <!-- 侧导航头部高度-->
+    <dimen name="nav_header_height">160dp</dimen>
 </resources>
