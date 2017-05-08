@@ -16,6 +16,15 @@ import java.util.List;
 
 public class HistoryInfoDaoImpl {
     private static final String TAG = HistoryInfoDaoImpl.class.getSimpleName();
+    /**
+     * 被标记为正常的记录
+     */
+    public static final int VALUE_ISMARK_NORMAL = 0;
+    /**
+     * 被标记的记录
+     */
+    public static final int VALUE_ISMARK_ALERT = 1;
+
     private HistroyInfoDao mHistroyInfoDao;
     public HistoryInfoDaoImpl(HistroyInfoDao histroyInfoDao){
         mHistroyInfoDao = histroyInfoDao;
@@ -34,7 +43,18 @@ public class HistoryInfoDaoImpl {
      * @return
      */
     public List<HistroyInfo> queryHistoryAll(){
+        QueryBuilder qb = mHistroyInfoDao.queryBuilder().orderDesc(HistroyInfoDao.Properties.Id);
+        return qb.list();
+    }
+
+    /**
+     * 根据被标记状态查找记录条数
+     * @param markStatus
+     * @return
+     */
+    public List<HistroyInfo> queryHistoryByMarkStatus(int markStatus){
         QueryBuilder qb = mHistroyInfoDao.queryBuilder();
+        qb.where(HistroyInfoDao.Properties.IsMarked.eq(markStatus)).orderDesc(HistroyInfoDao.Properties.Id);
         return qb.list();
     }
 

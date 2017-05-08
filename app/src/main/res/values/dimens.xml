@@ -22,4 +22,11 @@
     <!-- 侧导航头部高度-->
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!--頭像大小-->
+    <dimen name="size_header">80dp</dimen>
+    <!--頭像大小-->
+    <dimen name="size_header_user">56dp</dimen>
+    <!--图标大小-->
+    <dimen name="size_icon_launcher">80dp</dimen>
 </resources>

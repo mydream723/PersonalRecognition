@@ -9,16 +9,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_header"
+        android:layout_width="@dimen/size_header_user"
+        android:layout_height="@dimen/size_header_user"
+        android:src="@drawable/ic_header_user"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_small"
-        android:text="用户"
+        android:layout_marginTop="@dimen/padding_default"
+        android:text="警官"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/font_default"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

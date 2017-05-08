@@ -1,5 +1,6 @@
 package com.mydream.project.personalrecognition.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -91,7 +92,8 @@ public class HomeActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_history:
                 //识别历史
                 mDrawerLayout.closeDrawers();
-                showToast(mContext,"模块开发中");
+                Intent scanHistoryIntent = new Intent(mContext, ScanHistroyActivity.class);
+                startActivity(scanHistoryIntent);
                 break;
         }
         return false;

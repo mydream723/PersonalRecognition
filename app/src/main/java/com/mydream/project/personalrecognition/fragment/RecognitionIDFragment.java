@@ -117,6 +117,8 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     private SoundPool mSoundPool;
     private AlertDialog loadingDialog;
 
+    private boolean isTestData = false;
+
     public RecognitionIDFragment() {
         // Required empty public constructor
     }
@@ -142,6 +144,8 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
         setAnimators();
         // 设置镜头距离
         setCameraDistance();
+
+//        initVirtualData();
         return view;
     }
 
@@ -149,7 +153,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     public void onStart() {
         super.onStart();
         mRecognitionUtils = RecognitionUtils.getInstance();
-//        mRecognitionUtils.openDevice(mContext);
+        mRecognitionUtils.openDevice(mContext);
         mRecognitionUtils.setRecognitionInitialCallback(this);
 
         mSoundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);
@@ -257,6 +261,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
             case R.id.btn_idRecognitionFragment_idRecognition:
                 //开始识别身份证
                 Log.d(TAG, "onClick");
+                isTestData = false;
                 if (null != mRecognitionUtils) {
                     mRecognitionUtils.toRecognitionID();
                     mRecognitionUtils.setRecognitionIDCallback(this);
@@ -319,7 +324,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
                     boolean isAlert = random.nextInt(10) > 5 ? true : false;
                     setPersonFlag(isAlert);
                     //插入历史记录
-                    insertHistory(info);
+                    insertHistory(info, isAlert);
                 } else {
                     setRecognitionError();
                 }
@@ -413,13 +418,14 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     /**
      * 插入歷史記錄
      */
-    private void insertHistory(IDCardInfo scanInfo) {
+    private void insertHistory(IDCardInfo scanInfo, boolean isMarked) {
         HistroyInfo info = new HistroyInfo();
         SimpleDateFormat sdf = new SimpleDateFormat(Constances.FORMAT_DATE_SECOND);
         String scanDate = sdf.format(new Date());
         info.setScanDate(scanDate);
         info.setIsDeleted(0);
         info.setIsUploaded(0);
+        info.setIsMarked(isMarked ? 1 : 0);
         PersonalInfo personalInfo = DBManager.getInstance().getmPersonalInfoDao().queryExistPersonal(scanInfo.getIDCard(), scanInfo.getStrartDate(), scanInfo.getEndDate());
         long pid = 0;
         if (null == personalInfo) {
@@ -452,11 +458,14 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
         info.setSignDepartment(scanInfo.getDepartment());
         info.setValidStartDate(scanInfo.getStrartDate());
         info.setValidEndDate(scanInfo.getEndDate());
-
+        String headerPath ="";
+        if(!isTestData){
+            headerPath = getHeaderPath(scanInfo.getIDCard());
+            String headerOriginalPath = Environment.getExternalStorageDirectory() + Constances.PATH_HEADER_ORIGINAL;
+            FileUtils.copyFile(headerOriginalPath, headerPath);
+        }
         //頭像
-        String headerPath = getHeaderPath(scanInfo.getIDCard());
-        String headerOriginalPath = Environment.getExternalStorageDirectory() + Constances.PATH_HEADER_ORIGINAL;
-        FileUtils.copyFile(headerOriginalPath, headerPath);
+
         info.setHeader(headerPath);
         return DBManager.getInstance().getmPersonalInfoDao().insert(info);
     }
@@ -476,4 +485,106 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
             headFile.mkdirs();
         return headPath + fileName + ".bmp";
     }
+
+    private void initVirtualData(){
+        isTestData = true;
+        IDCardInfo scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("张三");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("汉");
+        scanInfo.setBirthDay("19870302");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120101198703021021");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,false);
+
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("李四");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("汉");
+        scanInfo.setBirthDay("19760302");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104197603021023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,true);
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("王五");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("回");
+        scanInfo.setBirthDay("19921022");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104199210221023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,false);
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("张华");
+        scanInfo.setSex("女");
+        scanInfo.setPeople("汉");
+        scanInfo.setBirthDay("19961012");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104199610122023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,false);
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("王五");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("回");
+        scanInfo.setBirthDay("19921022");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104199210221023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,false);
+
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("王红");
+        scanInfo.setSex("女");
+        scanInfo.setPeople("回");
+        scanInfo.setBirthDay("19821021");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104198210211023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,true);
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("李四");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("汉");
+        scanInfo.setBirthDay("19760302");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104197603021023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,true);
+
+        scanInfo = new IDCardInfo();
+        scanInfo.setPeopleName("王五");
+        scanInfo.setSex("男");
+        scanInfo.setPeople("回");
+        scanInfo.setBirthDay("19921022");
+        scanInfo.setAddr("天津市南开区天拖大厦");
+        scanInfo.setIDCard("120104199210221023");
+        scanInfo.setDepartment("天津市公安局南开分局");
+        scanInfo.setStrartDate("2011.02.02");
+        scanInfo.setEndDate("2021.02.02");
+        insertHistory(scanInfo,false);
+    }
+
 }
