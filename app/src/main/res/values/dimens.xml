@@ -21,4 +21,5 @@
     <dimen name="size_icon_alert">64dp</dimen>
     <!-- 侧导航头部高度-->
     <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

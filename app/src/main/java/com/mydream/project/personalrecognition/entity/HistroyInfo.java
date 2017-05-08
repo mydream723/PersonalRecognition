@@ -196,19 +196,19 @@ public class HistroyInfo {
         myDao.update(this);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 250864927)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getHistroyInfoDao() : null;
-    }
-
     public Long getPid() {
         return this.pid;
     }
 
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 250864927)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getHistroyInfoDao() : null;
     }
 
 
