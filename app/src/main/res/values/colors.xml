@@ -6,5 +6,7 @@
     <color name="colorAccent">#FF4081</color>
     <!--字体颜色-->
     <color name="font_default">#000000</color>
-
+    <!--dialog字体颜色-->
+    <color name="dialogText">#FFF</color>
+    <color name="dialogColor">#FFE74C3C</color>
 </resources>
