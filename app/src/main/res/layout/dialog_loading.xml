@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="@string/dialog_message"
+        android:text="@string/dialog_message_loading"
         android:id="@+id/tv_loadingDialog_message"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"

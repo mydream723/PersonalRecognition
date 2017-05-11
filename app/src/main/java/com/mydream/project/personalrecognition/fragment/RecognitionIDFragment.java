@@ -145,7 +145,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
         // 设置镜头距离
         setCameraDistance();
 
-//        initVirtualData();
+        initVirtualData();
         return view;
     }
 
@@ -153,7 +153,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     public void onStart() {
         super.onStart();
         mRecognitionUtils = RecognitionUtils.getInstance();
-        mRecognitionUtils.openDevice(mContext);
+//        mRecognitionUtils.openDevice(mContext);
         mRecognitionUtils.setRecognitionInitialCallback(this);
 
         mSoundPool = new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);

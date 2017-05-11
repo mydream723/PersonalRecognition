@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.mydream.project.personalrecognition.R;
+import com.mydream.project.personalrecognition.dialog.LoadingDialog;
 
 
 /**
@@ -67,6 +68,13 @@ public class LoginActivity extends BaseActivity{
             case R.id.bt_loginActivity_login:
                 //登录
                 hideKeyboard();
+
+                if(true){
+                    LoadingDialog dialog = new LoadingDialog(mContext);
+                    dialog.show();
+                    break;
+                }
+
                 String username = usernameACTextView.getText().toString().trim();
                 if(!(null != username && !username.equals(""))){
                     usernameTextInput.setError(getString(R.string.login_username_empty));

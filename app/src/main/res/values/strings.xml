@@ -5,7 +5,7 @@
     <string name="nav_menu_history">识别历史</string>
     <string name="nav_menu_settings">设置</string>
     <!--dialog-->
-    <string name="dialog_message">请稍后</string>
+    <string name="dialog_message_loading">请稍后……</string>
     <string name="dialog_title">注意</string>
     <string name="dialog_sure">确定</string>
     <string name="dialog_cancel">取消</string>
