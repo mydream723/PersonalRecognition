@@ -35,6 +35,7 @@ import com.mydream.project.personalrecognition.R;
 import com.mydream.project.personalrecognition.activity.BaseActivity;
 import com.mydream.project.personalrecognition.adapter.IDCardImgAdapter;
 import com.mydream.project.personalrecognition.db.DBManager;
+import com.mydream.project.personalrecognition.dialog.LoadingDialog;
 import com.mydream.project.personalrecognition.entity.HistroyInfo;
 import com.mydream.project.personalrecognition.entity.PersonalInfo;
 import com.mydream.project.personalrecognition.utils.Constances;
@@ -115,7 +116,10 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
      * 提示音
      */
     private SoundPool mSoundPool;
-    private AlertDialog loadingDialog;
+    /**
+     * 加载dialog
+     */
+    private LoadingDialog loadingDialog;
 
     private boolean isTestData = false;
 
@@ -277,6 +281,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     public void initialStart() {
         Log.d(TAG, "initialStart");
         showLoading();
+
     }
 
     @Override
@@ -288,8 +293,7 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     @Override
     public void initialComplete() {
         Log.d(TAG, "initialComplete");
-        if (null != loadingDialog && loadingDialog.isShowing())
-            loadingDialog.dismiss();
+        loadingDialog.dismiss();
         BaseActivity.showToast(mContext, "初始化成功");
     }
 
@@ -406,12 +410,9 @@ public class RecognitionIDFragment extends BaseFragment implements RecognitionUt
     }
 
     public void showLoading() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("提示");
-        builder.setMessage("正在初始化设备，请稍后……");
-        builder.setIcon(R.drawable.ic_recognition_wait);
-        loadingDialog = builder.create();
-        loadingDialog.setCanceledOnTouchOutside(false);
+        loadingDialog = new LoadingDialog(mContext);
+
+        loadingDialog.setMessage(mContext.getResources().getString(R.string.device_initial));
         loadingDialog.show();
     }
 

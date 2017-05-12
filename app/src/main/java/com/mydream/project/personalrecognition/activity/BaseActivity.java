@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
+
+import com.mydream.project.personalrecognition.R;
 
 
 /**
@@ -15,6 +18,11 @@ import android.widget.Toast;
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener{
     protected SharedPreferences mSharedPreferences;
     protected Context mContext;
+    /**
+     * 工具條
+     */
+    protected Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,16 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     protected  void initEvent(){
 
+    }
+
+    /**
+     * 初始化二级导航栏
+     */
+    protected void initSubTitle(){
+        mToolbar = (Toolbar)findViewById(R.id.toolbar_subtitle);
+        setSupportActionBar(mToolbar);
+        //返回键
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

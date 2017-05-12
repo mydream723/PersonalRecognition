@@ -2,6 +2,8 @@ package com.mydream.project.personalrecognition.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 
@@ -15,6 +17,10 @@ import android.widget.ProgressBar;
 
 import com.mydream.project.personalrecognition.R;
 import com.mydream.project.personalrecognition.dialog.LoadingDialog;
+import com.mydream.project.personalrecognition.dialog.NormalDialog;
+import com.mydream.project.personalrecognition.dialog.SingleDialog;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -68,12 +74,6 @@ public class LoginActivity extends BaseActivity{
             case R.id.bt_loginActivity_login:
                 //登录
                 hideKeyboard();
-
-                if(true){
-                    LoadingDialog dialog = new LoadingDialog(mContext);
-                    dialog.show();
-                    break;
-                }
 
                 String username = usernameACTextView.getText().toString().trim();
                 if(!(null != username && !username.equals(""))){

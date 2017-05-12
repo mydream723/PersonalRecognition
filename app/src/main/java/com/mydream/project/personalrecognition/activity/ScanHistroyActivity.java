@@ -53,6 +53,7 @@ public class ScanHistroyActivity extends BaseActivity implements TabLayout.OnTab
     @Override
     protected void initEvent() {
         super.initEvent();
+
     }
 
     private void initView() {

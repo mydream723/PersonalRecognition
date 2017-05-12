@@ -42,9 +42,13 @@
     <string name="recognition_wait">等待识别</string>
     <!--识别错误-->
     <string name="recognition_error">识别错误，请重新识别。</string>
+    <!--设备初始化-->
+    <string name="device_initial">正在设备初始化，请稍后……</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_scan_histroy">扫描历史</string>
+
+    <string name="title_activity_personal_detail">人员详细信息</string>
 
     <string name="scanHistory_tab_all">全部</string>
     <string name="scanHistory_tab_normal">正常</string>

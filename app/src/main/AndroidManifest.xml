@@ -41,6 +41,19 @@
         <activity
             android:name=".activity.ScanHistroyActivity"
             android:label="@string/title_activity_scan_histroy"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+
+        </activity>
+
+        <!--历史记录页面-->
+        <activity
+            android:name=".activity.PersonalDetailActivity"
+            android:label="@string/title_activity_personal_detail"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
 

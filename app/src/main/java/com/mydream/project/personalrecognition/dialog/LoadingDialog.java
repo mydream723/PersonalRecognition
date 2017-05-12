@@ -19,16 +19,21 @@ public class LoadingDialog {
     private String message;
     private boolean isCancelOutSide;
     private boolean isCancelable;
+    private LoadingResultListener mListener;
     public LoadingDialog(Context context) {
         mContext = context;
         Resources resources = context.getResources();
         message = resources.getString(R.string.dialog_message_loading);
         isCancelOutSide = false;
-        isCancelable = false;
+        isCancelable = true;
     }
 
-    public interface loadingResultListener{
-        void loadingFinish();
+    public interface LoadingResultListener{
+        void loadingFinish(SweetAlertDialog sweetAlertDialog);
+    }
+
+    public void setLoaingResultListener(LoadingResultListener listener){
+        mListener = listener;
     }
 
     public void setCancelOutSide(boolean isCancelOutSide){
@@ -45,7 +50,7 @@ public class LoadingDialog {
 
     public void show(){
         dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
-        dialog.setTitle(message);
+        dialog.setTitleText(message);
         dialog.setCanceledOnTouchOutside(isCancelOutSide);
         dialog.setCancelable(isCancelable);
         dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -56,6 +61,15 @@ public class LoadingDialog {
         dialog.setTitleText(message);
         dialog.setConfirmText(button);
         dialog.changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                if(null != mListener)
+                    mListener.loadingFinish(sweetAlertDialog);
+                else
+                    sweetAlertDialog.dismiss();
+            }
+        });
     }
 
     public void dismiss(){

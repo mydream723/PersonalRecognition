@@ -6,12 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.mydream.project.personalrecognition.R;
+import com.mydream.project.personalrecognition.activity.BaseActivity;
 import com.mydream.project.personalrecognition.adapter.HistoryDetailAdapter;
 import com.mydream.project.personalrecognition.adapter.HistoryItemAdapter;
 import com.mydream.project.personalrecognition.db.DBManager;
@@ -20,7 +22,7 @@ import com.mydream.project.personalrecognition.view.DividerItemDecoration;
 
 import java.util.List;
 
-public class HistoryAllFragment extends BaseFragment {
+public class HistoryAllFragment extends BaseFragment implements HistoryItemAdapter.HistoryItemOnClickListener{
     private static final String TAG = HistoryAllFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
 
@@ -40,12 +42,13 @@ public class HistoryAllFragment extends BaseFragment {
         initView(view);
         initEvent();
 
-
         mRecyclerAdapter = new HistoryItemAdapter(mContext, historyList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext,
                 DividerItemDecoration.VERTICAL_LIST));
+
+        mRecyclerAdapter.setHistoryItemClickListener(this);
         return view;
     }
 
@@ -64,6 +67,12 @@ public class HistoryAllFragment extends BaseFragment {
 
     private void initView(View view) {
         mRecyclerView = (RecyclerView)view.findViewById(R.id.rcv_historyFragment_list);
+    }
+
+    @Override
+    public void onItemClick(View v, int pos) {
+        Log.e(TAG, "_________");
+        Log.e(TAG, "position is " + pos);
     }
 
     /**

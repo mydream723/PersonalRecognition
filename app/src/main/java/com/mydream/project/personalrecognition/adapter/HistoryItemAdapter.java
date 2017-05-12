@@ -3,6 +3,7 @@ package com.mydream.project.personalrecognition.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,19 +22,34 @@ import java.util.List;
  */
 
 public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.MyViewHolder> {
+    private static final String TAG = HistoryItemAdapter.class.getSimpleName();
     private Context mContext;
     private List<HistroyInfo> historyList;
+
+    private HistoryItemOnClickListener mListener;
 
     public HistoryItemAdapter(Context context, List<HistroyInfo> historyList) {
         mContext = context;
         this.historyList = historyList;
     }
 
+    public interface HistoryItemOnClickListener {
+        void onItemClick(View v, int pos);
+    }
+
+    public interface  HistoryItemOnLongClickListener{
+        void onItemLongClick(View v, int pos);
+    }
+
+    public void setHistoryItemClickListener(HistoryItemOnClickListener listener) {
+        mListener = listener;
+    }
+
     @Override
     public HistoryItemAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                mContext).inflate(R.layout.item_history_detail, parent,
-                false));
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_history_detail, parent,
+                false);
+        MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
@@ -44,14 +60,16 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
         holder.nameTextView.setText(historyList.get(position).getPersonalInfo().getName());
         holder.cardIdTextView.setText(historyList.get(position).getPersonalInfo().getCardId());
         holder.recordDateTextView.setText(historyList.get(position).getScanDate());
-        if(historyList.get(position).getIsMarked() == 0){
+        if (historyList.get(position).getIsMarked() == 0) {
             //正常
             holder.flagTextView.setText(R.string.historyItem_flag_normal);
             holder.flagTextView.setTextColor(Color.BLACK);
-        }else{
+        } else {
             holder.flagTextView.setText(R.string.historyItem_flag_alert);
             holder.flagTextView.setTextColor(Color.RED);
         }
+        Log.e(TAG,"position:" + holder.getLayoutPosition());
+        holder.itemView.setOnClickListener(new HistoryItemClick(holder.getLayoutPosition()));
     }
 
     @Override
@@ -70,6 +88,21 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
             cardIdTextView = (TextView) view.findViewById(R.id.tv_historyItem_cardId);
             recordDateTextView = (TextView) view.findViewById(R.id.tv_historyItem_recordDate);
             flagTextView = (TextView) view.findViewById(R.id.tv_historyItem_recognitionFlag);
+        }
+    }
+
+    class HistoryItemClick implements View.OnClickListener {
+        private int position;
+
+        public HistoryItemClick(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (null != mListener) {
+                mListener.onItemClick(v, position);
+            }
         }
     }
 
