@@ -1,5 +1,6 @@
 package com.mydream.project.personalrecognition.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,10 +15,12 @@ import android.widget.ListView;
 
 import com.mydream.project.personalrecognition.R;
 import com.mydream.project.personalrecognition.activity.BaseActivity;
+import com.mydream.project.personalrecognition.activity.PersonalDetailActivity;
 import com.mydream.project.personalrecognition.adapter.HistoryDetailAdapter;
 import com.mydream.project.personalrecognition.adapter.HistoryItemAdapter;
 import com.mydream.project.personalrecognition.db.DBManager;
 import com.mydream.project.personalrecognition.entity.HistroyInfo;
+import com.mydream.project.personalrecognition.utils.Constances;
 import com.mydream.project.personalrecognition.view.DividerItemDecoration;
 
 import java.util.List;
@@ -71,8 +74,11 @@ public class HistoryAllFragment extends BaseFragment implements HistoryItemAdapt
 
     @Override
     public void onItemClick(View v, int pos) {
-        Log.e(TAG, "_________");
-        Log.e(TAG, "position is " + pos);
+        Intent detailIntent = new Intent(mContext, PersonalDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constances.INTENT_PERSONAL, historyList.get(pos));
+        detailIntent.putExtras(bundle);
+        startActivity(detailIntent);
     }
 
     /**

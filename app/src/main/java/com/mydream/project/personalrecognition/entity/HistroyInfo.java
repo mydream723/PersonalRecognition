@@ -1,18 +1,24 @@
 package com.mydream.project.personalrecognition.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.NotNull;
+import org.greenrobot.greendao.annotation.Transient;
+
+import java.io.Serializable;
 
 /**
  * 历史记录
  * Created by MX on 2017/5/6.
  */
 @Entity
-public class HistroyInfo {
+public class HistroyInfo implements Parcelable{
     /**
      * 自增id
      */
@@ -212,5 +218,21 @@ public class HistroyInfo {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(scanDate);
+        parcel.writeString(username);
+        parcel.writeInt(isUploaded);
+        parcel.writeString(uploadDate);
+        parcel.writeInt(isMarked);
+        parcel.writeInt(isDeleted);
+        parcel.writeLong(pid);
+        parcel.writeValue(personalInfo);
+    }
 }

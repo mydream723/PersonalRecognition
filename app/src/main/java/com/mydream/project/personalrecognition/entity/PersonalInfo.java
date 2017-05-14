@@ -6,15 +6,19 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToMany;
 
+import java.io.Serializable;
 import java.util.List;
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * 扫描人员信息
  * Created by MX on 2017/5/6.
  */
 @Entity
-public class PersonalInfo {
+public class PersonalInfo implements Serializable{
+    @Transient
+    private static final long serialVersionUID = 1L;
     @Id(autoincrement = true)
     private Long id;
     /**

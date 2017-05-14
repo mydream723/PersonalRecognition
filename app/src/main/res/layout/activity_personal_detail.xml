@@ -1,7 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
     <include
         layout="@layout/include_subtitle"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_default">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_personalDetailActivity_header"
+                android:layout_width="@dimen/size_header"
+                android:layout_height="@dimen/size_header"
+                android:layout_marginRight="@dimen/padding_small"
+                android:src="@drawable/ic_header" />
+            <!--姓名-->
+            <LinearLayout
+                android:id="@+id/ll_personalDetailActivity_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_personalDetailActivity_header"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/font_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/font_default"
+                    android:id="@+id/tv_personalDetailActivity_name"
+                    android:layout_marginStart="@dimen/padding_small"
+                    />
+            </LinearLayout>
+
+            <!--性别 民族-->
+            <LinearLayout
+                android:id="@+id/ll_personalDetailActivity_genderNation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_below="@id/ll_personalDetailActivity_name"
+                android:layout_toRightOf="@id/iv_personalDetailActivity_header"
+                android:orientation="horizontal">
+                <!--性别-->
+                <TextView
+                    style="@style/font_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_gender" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/font_default"
+                    android:id="@+id/tv_personalDetailActivity_gender"
+                    android:layout_marginStart="@dimen/padding_small"
+                    />
+                <!--民族-->
+                <TextView
+                    style="@style/font_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_big"
+                    android:text="@string/detail_nation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/font_default"
+                    android:id="@+id/tv_personalDetailActivity_nation"
+                    android:layout_marginStart="@dimen/padding_small"
+                    />
+            </LinearLayout>
+
+            <!--出生日期-->
+            <LinearLayout
+                android:id="@+id/ll_personalDetailActivity_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:layout_below="@id/ll_personalDetailActivity_genderNation"
+                android:layout_toRightOf="@id/iv_personalDetailActivity_header"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/font_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_birthday" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/font_default"
+                    android:id="@+id/tv_personalDetailActivity_birthday"
+                    android:layout_marginStart="@dimen/padding_small"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+        <!--身份证号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:text="@string/detail_idcard"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:layout_marginStart="@dimen/padding_small"
+                android:id="@+id/tv_personalDetailActivity_idcard"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--住址-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:text="@string/detail_address"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:layout_marginStart="@dimen/padding_small"
+                android:id="@+id/tv_personalDetailActivity_address"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--签发机关-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:text="@string/detail_department"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:layout_marginStart="@dimen/padding_small"
+                android:id="@+id/tv_personalDetailActivity_department"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--有效日期-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:text="@string/detail_validDate"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/font_default"
+                android:layout_marginStart="@dimen/padding_small"
+                android:id="@+id/tv_personalDetailActivity_validDate"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

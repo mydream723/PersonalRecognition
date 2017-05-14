@@ -15,7 +15,7 @@ import com.mydream.project.personalrecognition.R;
 /**
  * 基础Activity
  */
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener{
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected SharedPreferences mSharedPreferences;
     protected Context mContext;
     /**
@@ -30,19 +30,19 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
-    protected void initData(){
+    protected void initData() {
         mSharedPreferences = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
     }
 
-    protected  void initEvent(){
+    protected void initEvent() {
 
     }
 
     /**
      * 初始化二级导航栏
      */
-    protected void initSubTitle(){
-        mToolbar = (Toolbar)findViewById(R.id.toolbar_subtitle);
+    protected void initSubTitle() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_subtitle);
         setSupportActionBar(mToolbar);
         //返回键
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -55,11 +55,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * 显示Toast提示信息
+     *
      * @param context 上下文
      * @param message 显示信息
      */
-    public static void showToast(Context context, String message){
-        Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * 格式化生日
+     * @param context
+     * @param birthday
+     * @return
+     */
+    public static String formatBirthday(Context context, String birthday) {
+        String year = birthday.substring(0, 3);
+        String month = birthday.substring(4, 5);
+        String day = birthday.substring(6, 7);
+        return year + context.getResources().getString(R.string.date_year) + month + context.getResources().getString(R.string.date_month) + day + context.getResources().getString(R.string.date_day);
     }
 
 }

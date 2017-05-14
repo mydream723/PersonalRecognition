@@ -56,4 +56,19 @@
 
     <string name="historyItem_flag_normal">正常</string>
     <string name="historyItem_flag_alert">被标记</string>
+
+    <!--身份证详情-->
+    <string name="detail_name">姓名：</string>
+    <string name="detail_gender">性别：</string>
+    <string name="detail_nation">民族：</string>
+    <string name="detail_birthday">出生年月：</string>
+    <string name="detail_address">住址：</string>
+    <string name="detail_idcard">身份证号：</string>
+    <string name="detail_department">签发机关：</string>
+    <string name="detail_validDate">有效期限：</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="date_year">年</string>
+    <string name="date_month">月</string>
+    <string name="date_day">日</string>
 </resources>

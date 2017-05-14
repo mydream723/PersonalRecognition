@@ -23,4 +23,6 @@ public class Constances {
     public static final String FORMAT_DATE_SECOND = "yyyy-MM-dd HH:mm:ss";
 
 
+    public static final String INTENT_PERSONAL = "personalDetail";
+
 }
