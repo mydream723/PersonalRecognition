@@ -61,6 +61,7 @@ public class HistoryAllFragment extends BaseFragment implements HistoryItemAdapt
         mContext = getActivity();
 
         historyList = DBManager.getInstance().getmHistroyInfoDao().queryHistoryAll();
+        Log.e(TAG, "history list size is " + historyList.size());
     }
 
     @Override
@@ -76,8 +77,6 @@ public class HistoryAllFragment extends BaseFragment implements HistoryItemAdapt
     public void onItemClick(View v, int pos) {
         Intent detailIntent = new Intent(mContext, PersonalDetailActivity.class);
         HistroyInfo info = historyList.get(pos);
-        if(null != info)
-            Log.e(TAG, info.getPersonalInfo().getName());
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constances.INTENT_PERSONAL, info);
         detailIntent.putExtras(bundle);

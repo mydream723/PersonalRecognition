@@ -49,4 +49,15 @@ public class PersonalInfoDaoImpl {
             return null;
     }
 
+    public PersonalInfo queryPersonalById(long pid){
+        QueryBuilder<PersonalInfo> qb = mPersonalInfoDao.queryBuilder();
+        qb.where(PersonalInfoDao.Properties.Id.eq(pid));
+        List<PersonalInfo> infos = qb.list();
+        if(null != infos && infos.size() > 0){
+            return infos.get(0);
+        }else{
+            return null;
+        }
+    }
+
 }

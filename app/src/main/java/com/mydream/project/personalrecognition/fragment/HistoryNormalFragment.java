@@ -1,24 +1,28 @@
 package com.mydream.project.personalrecognition.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mydream.project.personalrecognition.R;
+import com.mydream.project.personalrecognition.activity.PersonalDetailActivity;
 import com.mydream.project.personalrecognition.adapter.HistoryItemAdapter;
 import com.mydream.project.personalrecognition.db.DBManager;
 import com.mydream.project.personalrecognition.db.HistoryInfoDaoImpl;
 import com.mydream.project.personalrecognition.entity.HistroyInfo;
+import com.mydream.project.personalrecognition.utils.Constances;
 import com.mydream.project.personalrecognition.view.DividerItemDecoration;
 
 import java.util.List;
 
-public class HistoryNormalFragment extends BaseFragment {
+public class HistoryNormalFragment extends BaseFragment implements  HistoryItemAdapter.HistoryItemOnClickListener{
     private static final String TAG = HistoryNormalFragment.class.getSimpleName();
     private OnFragmentInteractionListener mListener;
 
@@ -44,6 +48,8 @@ public class HistoryNormalFragment extends BaseFragment {
         mRecyclerView.setAdapter(mRecyclerAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext,
                 DividerItemDecoration.VERTICAL_LIST));
+
+        mRecyclerAdapter.setHistoryItemClickListener(this);
         return view;
     }
 
@@ -62,6 +68,16 @@ public class HistoryNormalFragment extends BaseFragment {
 
     private void initView(View view) {
         mRecyclerView = (RecyclerView)view.findViewById(R.id.rcv_historyFragment_list);
+    }
+
+    @Override
+    public void onItemClick(View v, int pos) {
+        Intent detailIntent = new Intent(mContext, PersonalDetailActivity.class);
+        HistroyInfo info = historyList.get(pos);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constances.INTENT_PERSONAL, info);
+        detailIntent.putExtras(bundle);
+        startActivity(detailIntent);
     }
 
     /**
