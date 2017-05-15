@@ -75,8 +75,11 @@ public class HistoryAllFragment extends BaseFragment implements HistoryItemAdapt
     @Override
     public void onItemClick(View v, int pos) {
         Intent detailIntent = new Intent(mContext, PersonalDetailActivity.class);
+        HistroyInfo info = historyList.get(pos);
+        if(null != info)
+            Log.e(TAG, info.getPersonalInfo().getName());
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Constances.INTENT_PERSONAL, historyList.get(pos));
+        bundle.putParcelable(Constances.INTENT_PERSONAL, info);
         detailIntent.putExtras(bundle);
         startActivity(detailIntent);
     }

@@ -54,28 +54,23 @@ public class HistroyInfo implements Parcelable{
     private Long pid;
     @ToOne(joinProperty = "pid")
     private PersonalInfo personalInfo;
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
-    /** Used for active entity operations. */
-    @Generated(hash = 381201273)
-    private transient HistroyInfoDao myDao;
 
-    @Generated(hash = 136238827)
-    public HistroyInfo(Long id, String scanDate, String username, int isUploaded,
-            String uploadDate, int isMarked, int isDeleted, Long pid) {
-        this.id = id;
-        this.scanDate = scanDate;
-        this.username = username;
-        this.isUploaded = isUploaded;
-        this.uploadDate = uploadDate;
-        this.isMarked = isMarked;
-        this.isDeleted = isDeleted;
-        this.pid = pid;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    @Generated(hash = 1209619449)
-    public HistroyInfo() {
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeString(scanDate);
+        parcel.writeString(username);
+        parcel.writeInt(isUploaded);
+        parcel.writeString(uploadDate);
+        parcel.writeInt(isMarked);
+        parcel.writeInt(isDeleted);
+        parcel.writeLong(pid);
+        parcel.writeParcelable(personalInfo,i);
     }
 
     public Long getId() {
@@ -134,8 +129,13 @@ public class HistroyInfo implements Parcelable{
         this.isDeleted = isDeleted;
     }
 
-    @Generated(hash = 1519672188)
-    private transient Long personalInfo__resolvedKey;
+    public Long getPid() {
+        return this.pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
 
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 129327782)
@@ -202,14 +202,6 @@ public class HistroyInfo implements Parcelable{
         myDao.update(this);
     }
 
-    public Long getPid() {
-        return this.pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     /** called by internal mechanisms, do not call yourself. */
     @Generated(hash = 250864927)
     public void __setDaoSession(DaoSession daoSession) {
@@ -217,22 +209,56 @@ public class HistroyInfo implements Parcelable{
         myDao = daoSession != null ? daoSession.getHistroyInfoDao() : null;
     }
 
+    public static final Parcelable.Creator<HistroyInfo> CREATOR = new Creator<HistroyInfo>(){
 
-    @Override
-    public int describeContents() {
-        return 0;
+        @Override
+        public HistroyInfo createFromParcel(Parcel source) {
+            return new HistroyInfo(source);
+        }
+
+        @Override
+        public HistroyInfo[] newArray(int size) {
+            return new HistroyInfo[size];
+        }
+
+
+    };
+    /** Used to resolve relations */
+    @Generated(hash = 2040040024)
+    private transient DaoSession daoSession;
+    /** Used for active entity operations. */
+    @Generated(hash = 381201273)
+    private transient HistroyInfoDao myDao;
+    @Generated(hash = 1519672188)
+    private transient Long personalInfo__resolvedKey;
+    public HistroyInfo(Parcel in){
+        //如果元素数据是list类型的时候需要： lits = new ArrayList<?> in.readList(list); 否则会出现空指针异常.并且读出和写入的数据类型必须相同.如果不想对部分关键字进行序列化,可以使用transient关键字来修饰以及static修饰.
+        id = in.readLong();
+        scanDate = in.readString();
+        username = in.readString();
+        isUploaded = in.readInt();
+        uploadDate = in.readString();
+        isMarked = in.readInt();
+        isDeleted = in.readInt();
+        pid = in.readLong();
+        personalInfo = in.readParcelable(PersonalInfo.class.getClassLoader());
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(id);
-        parcel.writeString(scanDate);
-        parcel.writeString(username);
-        parcel.writeInt(isUploaded);
-        parcel.writeString(uploadDate);
-        parcel.writeInt(isMarked);
-        parcel.writeInt(isDeleted);
-        parcel.writeLong(pid);
-        parcel.writeValue(personalInfo);
+    @Generated(hash = 136238827)
+    public HistroyInfo(Long id, String scanDate, String username, int isUploaded, String uploadDate, int isMarked, int isDeleted, Long pid) {
+        this.id = id;
+        this.scanDate = scanDate;
+        this.username = username;
+        this.isUploaded = isUploaded;
+        this.uploadDate = uploadDate;
+        this.isMarked = isMarked;
+        this.isDeleted = isDeleted;
+        this.pid = pid;
     }
+
+    @Generated(hash = 1209619449)
+    public HistroyInfo() {
+    }
+
+
 }

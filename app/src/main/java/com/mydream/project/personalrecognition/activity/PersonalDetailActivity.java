@@ -44,7 +44,9 @@ public class PersonalDetailActivity extends BaseActivity {
         mContext = PersonalDetailActivity.this;
 
         initIntent = getIntent();
-        mHistoryInfo = (HistroyInfo) initIntent.getSerializableExtra(Constances.INTENT_PERSONAL);
+
+
+        mHistoryInfo = getIntent().getParcelableExtra(Constances.INTENT_PERSONAL);
 
 
     }
