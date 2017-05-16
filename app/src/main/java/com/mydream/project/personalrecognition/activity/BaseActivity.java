@@ -70,9 +70,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
      * @return
      */
     public static String formatBirthday(Context context, String birthday) {
-        String year = birthday.substring(0, 3);
-        String month = birthday.substring(4, 5);
-        String day = birthday.substring(6, 7);
+        String year = birthday.substring(0, 4);
+        String month = birthday.substring(4, 6);
+        String day = birthday.substring(6, 8);
         return year + context.getResources().getString(R.string.date_year) + month + context.getResources().getString(R.string.date_month) + day + context.getResources().getString(R.string.date_day);
     }
 
